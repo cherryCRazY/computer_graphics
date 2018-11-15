@@ -1,0 +1,8 @@
+.Canvas {
+    position: absolute;
+    left: 0.3%;
+    border: 0.01vw solid black;
+    top: 5.5%;
+    box-sizing: border-box;
+    z-index: -1;
+}

@@ -1,0 +1,24 @@
+.Form {
+    display: grid;
+    grid-auto-rows: 1fr;
+    /* grid-gap: 1em; */
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid goldenrod;
+}
+.button {
+    display: block;
+    height: 50%;
+    outline: none;
+    background-color: goldenrod;
+    border: 1px outset black;
+    box-shadow: 2px 3px 4px black;
+}
+.button:hover {
+    transform: translate(0, -5px);
+}
+.button:active {
+    transform: translate(0, 0);
+}

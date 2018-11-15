@@ -1,0 +1,25 @@
+.Menu {
+    position: absolute;
+    background-color: darkslategray;
+    margin: auto;
+    width: 99.9vw;
+    height: 5vh;
+    top: 0%;
+    left: 0%;
+    box-shadow: 1px 5px 3px;
+    /* border: 0.01vw solid black; */
+}
+
+.Button {
+    position: relative;
+    left: 90%;
+    width: 50px;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px dotted blanchedalmond;
+    outline: none;
+}
+
+.Button:hover {
+    transform: translate(0, -2px);
+}

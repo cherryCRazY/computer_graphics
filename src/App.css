@@ -1,0 +1,26 @@
+.App {
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: rgb(24, 25, 29, 0.5);
+}
+
+.button {
+    display: block;
+    padding: 1vh;
+    outline: none;
+    background-color: goldenrod;
+    border: 1px outset black;
+    box-shadow: 2px 3px 4px black;
+}
+.button:hover {
+    transform: translate(0, -5px);
+}
+.button:active {
+    transform: translate(0, 0);
+}

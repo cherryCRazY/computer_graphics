@@ -1,0 +1,24 @@
+.Drawer {
+    width: 40vw;
+    left: 60%;
+    top: 5%;
+    position: absolute;
+    display: grid;
+    background-color: #2f4f4f;
+    box-sizing: border-box;
+    grid-template-columns: 0% 100%;
+    grid-auto-rows: fit-content(50%);
+    justify-content: center;
+}
+
+.Menu {
+    display: grid;
+    grid-auto-rows: 6rem;
+    justify-content: flex-end;
+    align-items: end;
+    box-sizing: border-box;
+}
+
+.Container {
+    border: 1px solid wheat;
+}

@@ -1,0 +1,18 @@
+.TransformContent {
+    display: grid;
+    text-align: center;
+    grid-auto-columns: 30vw;
+    grid-auto-rows: auto;
+    justify-content: center;
+    /* align-items: center; */
+}
+.TransformContent > div {
+    display: block;
+    padding: 2vh;
+    color: silver;
+    border: 1px solid orange;
+    text-align: center;
+}
+.Header {
+    background-color: rgb(0, 0, 0, 0.2);
+}

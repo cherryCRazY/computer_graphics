@@ -1,0 +1,17 @@
+.CustomInput {
+    text-align: center;
+    border: 1px solid goldenrod;
+    color: goldenrod;
+    padding: 0.5em;
+}
+.CustomInput > input {
+    border: 2px outset black;
+    outline: none;
+    display: block;
+    text-align: center;
+}
+
+.CustomInput > input::placeholder {
+    text-align: center;
+    color: #ccc;
+}
