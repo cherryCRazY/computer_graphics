@@ -3,7 +3,7 @@ import Aux from "../../hoc/Auxiliary";
 import Canvas from "../../components/Canvas/Canvas";
 import Menu from "../../components/Menu/Menu";
 import Drawer from "../../components/Drawer/Drawer";
-import CanvasServices from "../../services/tools/CanvasService";
+import CanvasServices from "../../services/CanvasService";
 import * as actionsCreators from "../../store/actions/index";
 import { connect } from "react-redux";
 
@@ -35,7 +35,9 @@ class ControlPanel extends Component {
             translate: this.state.canvasService.translate,
             rotate: this.state.canvasService.rotate,
             athens: this.state.canvasService.athens,
-            projectiv: this.state.canvasService.projectiv
+            projectiv: this.state.canvasService.projectiv,
+            arhimed: this.state.canvasService.arhimed,
+            arhimedTangent: this.state.canvasService.arhimedTangent
         };
     };
 

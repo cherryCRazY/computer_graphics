@@ -1,4 +1,4 @@
-import * as defaultValues from "./drawTools/defaultValues";
+import * as defaultValues from "./tools/drawTools/defaultValues";
 
 class CanvasDrawer {
     constructor(context, startPoint = defaultValues.startPoint) {
@@ -10,6 +10,7 @@ class CanvasDrawer {
             auxLineArray: [],
             textArray: []
         };
+        this.arhimed = [];
         this.ctx.beginPath();
         this.ctx.strokeStyle = "black";
         this.ctx.lineWidth = "2";
@@ -267,6 +268,73 @@ class CanvasDrawer {
         if (grid) this.drawAll(0, true);
         if (cord) this.drawAll(0, 0, true);
     };
+    drawingArhimed = (drawingArray = this.dotsObject.detailArray) => {
+        const ctx = this.ctx;
+        let temp = this.startPoint;
+
+        const lineDrawer = (x1, y1, x2, y2, z1 = 1, z2 = 1) => {
+            ctx.beginPath();
+            ctx.lineCap = "round";
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.closePath();
+            ctx.stroke();
+        };
+
+        const draw = dot => {
+            const { lineWidth, strokeStyle, setLineDash, x, y } = dot;
+            ctx.beginPath();
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = strokeStyle;
+            ctx.setLineDash(setLineDash);
+
+            lineDrawer(temp.x, temp.y, x, y);
+
+            ctx.stroke();
+            ctx.closePath();
+            temp = dot;
+
+            return dot;
+        };
+
+        drawingArray.map(draw);
+        return;
+    };
+
+    drawingArhimedAsync = (drawingArray = this.dotsObject.detailArray) => {
+        const ctx = this.ctx;
+        let temp = this.startPoint;
+
+        const lineDrawer = (x1, y1, x2, y2, z1 = 1, z2 = 1) => {
+            ctx.beginPath();
+            ctx.lineCap = "round";
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.closePath();
+            ctx.stroke();
+        };
+
+        const draw = dot => {
+            return setTimeout(() => {
+                const { lineWidth, strokeStyle, setLineDash, x, y } = dot;
+                ctx.beginPath();
+                ctx.lineWidth = lineWidth;
+                ctx.strokeStyle = strokeStyle;
+                ctx.setLineDash(setLineDash);
+
+                lineDrawer(temp.x, temp.y, x, y);
+
+                ctx.stroke();
+                ctx.closePath();
+                temp = dot;
+
+                return dot;
+            }, 1500);
+        };
+
+        drawingArray.map(draw);
+        return;
+    };
 
     drawing = (drawingArray = this.dotsObject.detailArray) => {
         const ctx = this.ctx;
@@ -297,6 +365,7 @@ class CanvasDrawer {
         });
         return;
     };
+
     drawingText = (textArray = this.dotsObject.textArray) => {
         const ctx = this.ctx;
         textArray.forEach(el => {

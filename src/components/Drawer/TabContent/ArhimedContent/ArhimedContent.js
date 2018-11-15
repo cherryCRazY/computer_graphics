@@ -5,24 +5,42 @@ import classes from "./ArhimedContent.module.css";
 import Aux from "../../../../hoc/Auxiliary";
 
 class ArhimedContent extends PureComponent {
+    drawHandler = formProps => {
+        const { A_Start, Count, A_Final } = formProps;
+        const draw = this.props.clicked().arhimed;
+        draw(+A_Start, +Count, +A_Final);
+    };
+    drawTangentHandler = formProps => {
+        const { A_Start, Count, A_Final, X, Y } = formProps;
+        const arhimedTangent = this.props.clicked().arhimedTangent;
+        arhimedTangent(+A_Start, +Count, +A_Final, +X, +Y);
+    };
     render() {
-        const { handleSubmit, clicked } = this.props;
+        const { handleSubmit } = this.props;
         return (
             <Aux>
                 <form name="draw">
                     <div className={classes.Form}>
                         <div>Draw</div>
-                        <CustomInput name="a" component="input" type="number" />
-                        <CustomInput name="b" component="input" type="number" />
                         <CustomInput
-                            name="aFinal"
+                            name="A_Start"
+                            component="input"
+                            type="number"
+                        />
+                        <CustomInput
+                            name="Count"
+                            component="input"
+                            type="number"
+                        />
+                        <CustomInput
+                            name="A_Final"
                             component="input"
                             type="number"
                         />
                         <button
                             type="submit"
                             className="button"
-                            onClick={handleSubmit()}
+                            onClick={handleSubmit(this.drawHandler)}
                         >
                             Draw
                         </button>
@@ -36,7 +54,7 @@ class ArhimedContent extends PureComponent {
                         <button
                             type="submit"
                             className="button"
-                            onClick={handleSubmit()}
+                            onClick={handleSubmit(this.drawTangentHandler)}
                         >
                             Draw
                         </button>
@@ -51,9 +69,9 @@ const arhimedContent = reduxForm({
     form: "transform",
     onSubmit: input => console.dir(input),
     initialValues: {
-        a: 0,
-        b: 1,
-        aFinal: 100,
+        A_Start: 0,
+        Count: 5,
+        A_Final: 100,
         X: 0,
         Y: 0
     }
