@@ -5,10 +5,6 @@ import {
     canvasWidth
 } from "../../services/tools/drawTools/defaultValues";
 import * as actionsCreators from "../../store/actions/index";
-import {
-    drawLine,
-    drawArc
-} from "../../services/tools/drawTools/drawElementary";
 import { connect } from "react-redux";
 
 class canvas extends Component {

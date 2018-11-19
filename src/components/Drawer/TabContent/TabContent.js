@@ -3,11 +3,11 @@ import Aux from "../../../hoc/Auxiliary";
 import DrawContent from "./DrawContent/DrawContent";
 import TransformContent from "./TransformContent/TransformContent";
 
-const TabContent = ({ category, toggle }) => {
+const TabContent = ({ category, clicked }) => {
     let content = "";
     switch (category) {
         case "draw": {
-            content = <DrawContent toggle={toggle} />;
+            content = <DrawContent clicked={clicked} />;
             break;
         }
         case "transform ": {

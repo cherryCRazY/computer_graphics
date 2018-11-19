@@ -6,14 +6,39 @@ import * as actionsCreators from "../../store/actions/index";
 import { connect } from "react-redux";
 import TabContent from "./TabContent/TabContent";
 import CanvasDrawer from "../../services/tools/CanvasDrawer";
+import { translate } from "./../../services/tools/transformation/euclidTransformation";
+import { STEP_OF_GRID } from "./../../services/tools/drawTools/defaultValues";
 
 class Drawer extends Component {
+    state = {
+        canvas: null
+    };
     componentDidMount() {
-        // canvas.drawMyOwnDetail();
-        console.log("kek");
-    }
-    render() {
         const canvas = new CanvasDrawer(this.props.context);
+        canvas.clearCanvas(1, 1);
+        canvas.drawMyOwnDetail();
+        canvas.drawAll(true, true, true, true);
+        canvas.clearCanvas(1, 1);
+        translate(canvas, 100, 100);
+
+        this.setState({ canvas: canvas });
+    }
+    onClickHandler = (R1, R2, R3, R4, A) => {
+        const canvas = this.state.canvas;
+        canvas.clearCanvas(1, 1);
+        canvas.drawMyOwnDetail(R1, R2, R3, R4, A);
+        canvas.drawAll(true, true, true, true);
+    };
+    TranslateHandler = (m, n) => {
+        const canvas = this.state.canvas;
+        const { x, y } = canvas.startPoint;
+        canvas.startPoint = {
+            x: x + m * STEP_OF_GRID,
+            y: y + n * STEP_OF_GRID
+        };
+        canvas.drawAll(1, 0, 0, 1);
+    };
+    render() {
         return (
             <div className={classes.Drawer}>
                 <div className={classes.Menu}>
@@ -33,7 +58,7 @@ class Drawer extends Component {
                     category={this.props.category}
                 >
                     <TabContent
-                        toggle={canvas.drawMyOwnDetail}
+                        clicked={this.onClickHandler}
                         category={this.props.category}
                     />
                 </div>

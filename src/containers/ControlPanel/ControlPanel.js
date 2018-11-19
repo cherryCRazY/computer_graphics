@@ -8,7 +8,6 @@ class ControlPanel extends Component {
     state = {
         drawer: false
     };
-    c;
 
     toggleDrawerHandler = () => {
         this.setState({ drawer: !this.state.drawer });

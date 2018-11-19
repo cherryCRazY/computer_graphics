@@ -4,10 +4,20 @@ import classes from "./DrawContent.module.css";
 import CustomInput from "../../../UI/CustomInput/CustomInput";
 
 class DrawContent extends PureComponent {
+    handleSubmit = formProps => {
+        console.dir(formProps);
+        console.log("kekos2");
+        const { R1, R2, R3, R4, A } = formProps;
+        this.props.clicked(+R1, +R2, +R3, +R4, +A);
+    };
     render() {
         const { handleSubmit } = this.props;
         return (
-            <form className={classes.Form} name="draw" onSubmit={handleSubmit}>
+            <form
+                className={classes.Form}
+                name="draw"
+                onSubmit={handleSubmit(this.handleSubmit)}
+            >
                 <CustomInput
                     name="A"
                     component="input"
@@ -38,14 +48,7 @@ class DrawContent extends PureComponent {
                     placeholder="25"
                     type="number"
                 />
-                <button
-                    type="submit"
-                    onClick={() => {
-                        this.props.toggle();
-                        handleSubmit();
-                    }}
-                    className="button"
-                >
+                <button type="submit" className="button">
                     DRAW
                 </button>
             </form>
@@ -55,15 +58,12 @@ class DrawContent extends PureComponent {
 
 const drawComponent = reduxForm({
     form: "draw",
-    onSubmit: input => console.dir(input),
     initialValues: {
-        draw: {
-            A: "0",
-            R1: "0",
-            R2: "0",
-            R3: "0",
-            R4: "0"
-        }
+        A: 150,
+        R1: 15,
+        R2: 35,
+        R3: 36,
+        R4: 25
     }
 })(DrawContent);
 
