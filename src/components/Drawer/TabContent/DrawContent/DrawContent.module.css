@@ -22,3 +22,7 @@
 .button:active {
     transform: translate(0, 0);
 }
+.img {
+    left: 50%;
+    transform: translate(50%);
+}

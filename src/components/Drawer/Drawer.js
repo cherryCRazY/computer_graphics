@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classes from "./Drawer.module.css";
-import { FaHighlighter, FaObjectGroup } from "react-icons/fa";
+import { FaHighlighter, FaObjectGroup, FaBezierCurve } from "react-icons/fa";
 import CategoryItem from "./CategoryItem/CategoryItem";
 import TabContent from "./TabContent/TabContent";
 
@@ -17,7 +17,12 @@ class Drawer extends Component {
                     <CategoryItem
                         Icon={FaObjectGroup}
                         clicked={this.props.onSetCategory}
-                        name="Transform "
+                        name="Transform"
+                    />
+                    <CategoryItem
+                        Icon={FaBezierCurve}
+                        clicked={this.props.onSetCategory}
+                        name="Arhimed"
                     />
                 </div>
                 <div

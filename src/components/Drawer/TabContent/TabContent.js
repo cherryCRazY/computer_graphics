@@ -2,6 +2,7 @@ import React from "react";
 import Aux from "../../../hoc/Auxiliary";
 import DrawContent from "./DrawContent/DrawContent";
 import TransformContent from "./TransformContent/TransformContent";
+import ArhimedContent from "./ArhimedContent/ArhimedContent";
 
 const TabContent = ({ category, clicked }) => {
     let content = "";
@@ -10,8 +11,12 @@ const TabContent = ({ category, clicked }) => {
             content = <DrawContent clicked={clicked} />;
             break;
         }
-        case "transform ": {
+        case "transform": {
             content = <TransformContent clicked={clicked} />;
+            break;
+        }
+        case "arhimed": {
+            content = <ArhimedContent clicked={clicked} />;
             break;
         }
         default: {
