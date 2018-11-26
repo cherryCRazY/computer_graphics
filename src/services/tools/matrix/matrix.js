@@ -8,23 +8,19 @@ export const Matrix = (function Matrix() {
             return [[scaleX, 0, 0], [0, scaleY, 0], [0, 0, 1]];
         }
 
-        rotate(angle, m, n) {
+        rotate(angle, m = 0, n = 0) {
             const rad = (angle * Math.PI) / 180;
 
             return [
                 [Math.cos(rad), Math.sin(rad), 0],
                 [-Math.sin(rad), Math.cos(rad), 0],
-                [
-                    m * (Math.cos(rad) - 1) + Math.sin(rad),
-                    n * (Math.cos(rad) - 1) - m * Math.sin(rad),
-                    1
-                ]
+                [m, n, 1]
             ];
         }
 
         multiplyVector(_dot, matrix) {
             const { x, y, z } = _dot;
-            const dot = [x, y, z];
+            const dot = [+x, +y, +z];
             const newVector = [];
 
             for (let i = 0; i < matrix.length; i++) {
@@ -34,10 +30,10 @@ export const Matrix = (function Matrix() {
                 }
             }
             return {
+                ..._dot,
                 x: newVector[0],
                 y: newVector[1],
-                z: newVector[2],
-                ..._dot
+                z: newVector[2]
             };
         }
         multiplyMatrix(A, B) {

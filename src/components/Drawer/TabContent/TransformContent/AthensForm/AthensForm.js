@@ -5,6 +5,18 @@ import React, { PureComponent } from "react";
 import classes from "./AthensForm.module.css";
 
 class AthensForm extends PureComponent {
+    athensTransform = formProps => {
+        const {
+            athenXx,
+            athenYx,
+            athenXy,
+            athenYy,
+            athenX0,
+            athenY0
+        } = formProps;
+        const athens = this.props.clicked().athens;
+        athens(+athenXx, +athenYx, +athenXy, +athenYy, +athenX0, +athenY0);
+    };
     render() {
         const { handleSubmit } = this.props;
         return (
@@ -50,7 +62,7 @@ class AthensForm extends PureComponent {
                     <button
                         type="button"
                         className="button"
-                        onClick={handleSubmit}
+                        onClick={handleSubmit(this.athensTransform)}
                     >
                         Transform
                     </button>
@@ -64,39 +76,12 @@ const athensForm = reduxForm({
     form: "transform",
     onSubmit: input => console.dir(input),
     initialValues: {
-        draw: {
-            A: "0",
-            R1: "0",
-            R2: "0",
-            R3: "0",
-            R4: "0"
-        },
-        progectiveForm: {
-            Xx: "0",
-            Yx: "0",
-            Xy: "0",
-            Yy: "0",
-            X0: "0",
-            Y0: "0",
-            Wx: "0",
-            Wy: "0",
-            W0: "0"
-        },
-        athensForm: {
-            athenXx: "0",
-            athenYx: "0",
-            athenXy: "0",
-            athenYy: "0",
-            athenX0: "0",
-            athenY0: "0"
-        },
-        euklidForm: {
-            translateX: "0",
-            translateY: "0",
-            rotateX: "0",
-            rotateY: "0",
-            rotateAngle: "0"
-        }
+        athenXx: 1,
+        athenYx: -0.5,
+        athenXy: -0.5,
+        athenYy: 1,
+        athenX0: 200,
+        athenY0: 200
     }
 })(AthensForm);
 

@@ -11,7 +11,7 @@ const TabContent = ({ category, clicked }) => {
             break;
         }
         case "transform ": {
-            content = <TransformContent />;
+            content = <TransformContent clicked={clicked} />;
             break;
         }
         default: {

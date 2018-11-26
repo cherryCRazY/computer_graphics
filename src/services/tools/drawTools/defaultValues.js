@@ -2,7 +2,7 @@ export const canvasWidth = window.innerWidth * 0.99;
 export const canvasHeight = window.innerHeight * 0.935;
 
 export const defaultColor = "black";
-export const defaultWidth = "2";
+export const defaultWidth = "3";
 export const STEP_OF_GRID = 25;
 
 export const startPoint = {
@@ -13,7 +13,7 @@ export const startPoint = {
 export const defaultStyle = {
     lineWidth: defaultWidth,
     strokeStyle: defaultColor,
-    setLineDash: [1, 1]
+    setLineDash: [0, 0]
 };
 export const auxStyle = {
     lineWidth: "0.7",
@@ -21,7 +21,7 @@ export const auxStyle = {
     setLineDash: [20, 10]
 };
 export const gridStyle = {
-    lineWidth: "0.1",
+    lineWidth: "0.25",
     strokeStyle: "#42C14F",
     setLineDash: [1, 1]
 };

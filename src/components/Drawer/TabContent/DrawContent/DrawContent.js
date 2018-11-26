@@ -5,10 +5,12 @@ import CustomInput from "../../../UI/CustomInput/CustomInput";
 
 class DrawContent extends PureComponent {
     handleSubmit = formProps => {
-        console.dir(formProps);
-        console.log("kekos2");
         const { R1, R2, R3, R4, A } = formProps;
-        this.props.clicked(+R1, +R2, +R3, +R4, +A);
+        console.log(A);
+        console.log(this.props.clicked());
+        const draw = this.props.clicked().draw;
+        console.log(draw);
+        draw(+R1, +R2, +R3, +R4, +A);
     };
     render() {
         const { handleSubmit } = this.props;

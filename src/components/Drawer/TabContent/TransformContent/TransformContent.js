@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classes from "./TransformContent.module.css";
 import EuklidForm from "./EuklidForm/EuklidForm";
 import AthensForm from "./AthensForm/AthensForm";
-import ProgectiveForm from "./ProgectiveForm/ProgectiveForm";
+import ProjectiveForm from "./ProjectiveForm/ProjectiveForm";
 
 class TransformContent extends Component {
     state = {
@@ -29,21 +29,27 @@ class TransformContent extends Component {
                 >
                     Euklid Transform
                 </div>
-                {this.state.euklid ? <EuklidForm /> : null}
+                {this.state.euklid ? (
+                    <EuklidForm clicked={this.props.clicked} />
+                ) : null}
                 <div
                     className={classes.Header}
                     onClick={() => this.toggleStateHandler("athens")}
                 >
                     Athens Transform
                 </div>
-                {this.state.athens ? <AthensForm /> : null}
+                {this.state.athens ? (
+                    <AthensForm clicked={this.props.clicked} />
+                ) : null}
                 <div
                     className={classes.Header}
                     onClick={() => this.toggleStateHandler("progective")}
                 >
-                    Progetive Transform
+                    Projetive Transform
                 </div>
-                {this.state.progective ? <ProgectiveForm /> : null}
+                {this.state.progective ? (
+                    <ProjectiveForm clicked={this.props.clicked} />
+                ) : null}
             </div>
         );
     }

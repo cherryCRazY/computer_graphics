@@ -1,5 +1,4 @@
 import * as defaultValues from "./drawTools/defaultValues";
-import { Matrix } from "./matrix/matrix";
 
 class CanvasDrawer {
     constructor(context, startPoint = defaultValues.startPoint) {
@@ -8,13 +7,19 @@ class CanvasDrawer {
             detailArray: [],
             gridArray: [],
             systemCordArray: [],
-            auxLineArray: []
+            auxLineArray: [],
+            textArray: []
         };
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = "2";
         this.startPoint = startPoint;
-        this.textArray = [];
+
         this.drawMyOwnDetail();
         this.drawGrid();
         this.drawSystemOfCord();
+        this.ctx.closePath();
+        // this.drawAll(true, true, true, true);
     }
     drawLine = (
         x1,
@@ -23,8 +28,8 @@ class CanvasDrawer {
         y2,
         arr,
         dotsObject = this.dotsObject,
-        z1 = 0,
-        z2 = 0
+        z1 = 1,
+        z2 = 1
     ) => {
         switch (arr) {
             case "aux": {
@@ -83,8 +88,14 @@ class CanvasDrawer {
         }
     };
     //this function collects all point for drawing Text
-    drawText = (text, x, y, style) => {
-        this.textArray.push({ text: text, x: x, y: y, style: style });
+    drawText = (text, x, y, style, z = 1) => {
+        this.dotsObject.textArray.push({
+            text: text,
+            x: x,
+            y: y,
+            z: z,
+            style: style
+        });
     };
 
     //this function collects all point for drawing Detail
@@ -208,18 +219,13 @@ class CanvasDrawer {
             drawLine(i, STEP_OF_GRID - 10, i, STEP_OF_GRID + 10, "cord");
             if (i < height - 80) {
                 drawLine(STEP_OF_GRID - 10, i, STEP_OF_GRID + 10, i, "cord");
-                drawText(
-                    `${i - STEP_OF_GRID > 0 ? i - STEP_OF_GRID : ""}`,
-                    45,
-                    i + 5,
-                    {
-                        font: "40 bold Georgia  ",
-                        ...defaultValues.defaultStyle
-                    }
-                );
+                drawText(`${i > STEP_OF_GRID ? i : ""}`, 45, i + 5, {
+                    font: "40 bold Georgia  ",
+                    ...defaultValues.defaultStyle
+                });
             }
             if (i < width - STEP_OF_GRID * 3) {
-                drawText(`${i - STEP_OF_GRID}`, i, STEP_OF_GRID * 2, {
+                drawText(`${i > STEP_OF_GRID ? i : ""}`, i, STEP_OF_GRID * 2, {
                     font: "11px bold Georgia",
                     ...defaultValues.defaultStyle
                 });
@@ -265,7 +271,7 @@ class CanvasDrawer {
     drawing = (drawingArray = this.dotsObject.detailArray) => {
         const ctx = this.ctx;
 
-        const lineDrawer = (x1, y1, x2, y2, z1 = 0, z2 = 0) => {
+        const lineDrawer = (x1, y1, x2, y2, z1 = 1, z2 = 1) => {
             ctx.beginPath();
             ctx.lineCap = "round";
             ctx.moveTo(x1, y1);
@@ -278,6 +284,7 @@ class CanvasDrawer {
             const { x: x0, y: y0 } = dots[0];
             const { x: x1, y: y1 } = dots[1];
             const { lineWidth, strokeStyle, setLineDash } = dots[0];
+            ctx.beginPath();
             ctx.lineWidth = lineWidth;
             ctx.strokeStyle = strokeStyle;
             ctx.setLineDash(setLineDash);
@@ -290,7 +297,7 @@ class CanvasDrawer {
         });
         return;
     };
-    drawingText = (textArray = this.textArray) => {
+    drawingText = (textArray = this.dotsObject.textArray) => {
         const ctx = this.ctx;
         textArray.forEach(el => {
             ctx.font = el.style.font;
@@ -306,7 +313,8 @@ class CanvasDrawer {
             detailArray,
             gridArray,
             systemCordArray,
-            auxLineArray
+            auxLineArray,
+            textArray
         } = this.dotsObject;
 
         if (detail) {
@@ -323,7 +331,7 @@ class CanvasDrawer {
         if (cord) {
             ctx.beginPath();
             drawing(systemCordArray);
-            this.drawingText(this.textArray);
+            this.drawingText(textArray);
             ctx.closePath();
         }
         if (aux) {
